@@ -10,12 +10,12 @@ router.get("/pieChart", async (req, res) => {
   });
 });
 
-router.get("/barChart", async (req, res) => {
-  res.json({
-    result: "success",
-    name: ["쾌적", "양호", "보통", "불량", "불쾌"],
-    value: [1, 4, 43, 27, 5],
-  });
-});
+// router.get("/barChart", async (req, res) => {
+//   res.json({
+//     result: "success",
+//     name: ["쾌적", "양호", "보통", "불량", "불쾌"],
+//     value: [1, 4, 43, 27, 5],
+//   });
+// });
 
 module.exports = router;

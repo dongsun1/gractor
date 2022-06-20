@@ -6,7 +6,7 @@ COPY package.json package-lock.json ./
 
 RUN npm ci
 
-COPY app.js routes.
+COPY app.js routes/chart.js.
 
 ENTRYPOINT [ "node", "app.js" ]
 
