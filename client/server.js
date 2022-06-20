@@ -12,11 +12,6 @@ app.use(express.static(path.join(__dirname)));
 app.use(cors());
 
 app.get("/*", (req, res) => {
-  res.set({
-    "Cache-Control": "no-cache, no-store, must-revalidate",
-    Pragma: "no-cache",
-    Date: Date.now(),
-  });
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
