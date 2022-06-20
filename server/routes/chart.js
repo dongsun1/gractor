@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/pieChart", async (req, res) => {
-  console.log("a");
   res.json({
     result: "success",
     name: ["빗물받이", "스마트폴", "자가망"],

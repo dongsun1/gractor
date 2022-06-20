@@ -1,3 +1,4 @@
+const http = require("http");
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -9,6 +10,6 @@ app.use("/api", [chartRouter]);
 
 app.use(cors());
 
-app.listen(port, () => {
+http.createServer(app).listen(port, () => {
   console.log(port, "포트로 서버가 켜졌어요!");
 });
