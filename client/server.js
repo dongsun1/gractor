@@ -18,5 +18,5 @@ app.get("/*", (req, res) => {
 });
 
 http.createServer(app).listen(port, () => {
-  console.log(`app listening at ${port}`);
+  console.log(port, "포트로 서버가 켜졌어요!");
 });
