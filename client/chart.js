@@ -15,6 +15,9 @@ $.ajax({
       }
     }
   },
+  error: function (err) {
+    console.log(err);
+  },
 });
 
 var myChart = echarts.init(document.getElementById("main"));
