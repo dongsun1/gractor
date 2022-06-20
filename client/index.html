@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e968cfcce9a1b1af8da2a6cff096e20c&libraries=services"
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/4c4ebf062f.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.js"
+      integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <div id="HLeft">
+        <div id="logo"></div>
+        <span id="title">우시장 IoT 스마트 서비스</span>
+      </div>
+      <div id="HRight">
+        <div id="nowTime">
+          <div class="HRightTitle">현재시각</div>
+          <div class="HRightDesc">15:26:43</div>
+        </div>
+        <div class="line"></div>
+        <div id="weather">
+          <div class="HRightTitle">날씨</div>
+          <div class="HRightDesc">21℃ 36%</div>
+        </div>
+        <div class="line"></div>
+        <div id="airQuality">
+          <div class="HRightTitle">공기질</div>
+          <div class="HRightDesc">27 좋음</div>
+        </div>
+        <div id="alarm"></div>
+        <div id="IP">
+          <div class="HRightTitle">192.168.1.221</div>
+          <div class="HRightDesc">김민준</div>
+        </div>
+        <div id="moreBtn"></div>
+      </div>
+    </header>
+    <div id="sideNav">
+      <div id="sideNavTop">
+        <div class="menu" id="menu1"></div>
+        <div class="menu" id="menu2"></div>
+        <div class="menu" id="menu3"></div>
+        <div class="menu" id="menu4"></div>
+        <div class="menu" id="menu5"></div>
+        <div class="menu" id="menu6"></div>
+      </div>
+      <div id="sideNavBottom">
+        <div class="menu" id="navMoreBtn"></div>
+      </div>
+    </div>
+    <div id="map"></div>
+    <div id="weatherPopup">
+      <div class="popupTop">
+        <span class="popupTitle">날씨정보(3일)</span>
+        <span id="weatherPopupRight">기상청</span>
+      </div>
+      <hr class="popupLineUp" />
+      <hr class="popupLine" />
+      <div class="weatherSection">
+        <div class="weatherDay">05.14(금)</div>
+        <div class="weatherRain">
+          <div class="rain">
+            <img src="image/rain.png" alt="비" />
+            <span class="rainText">흐리고 비</span>
+          </div>
+          <div class="rainPer">
+            강수확률 <span class="rainPerNum">100</span> %
+          </div>
+        </div>
+        <div class="weatherTemperature">
+          <div class="lowest">최저 <span class="lowestNum">17</span> ℃</div>
+          <div class="highest">최고 <span class="highestNum">29</span> ℃</div>
+        </div>
+      </div>
+      <hr class="weatherSectionLine" />
+      <div class="weatherSection">
+        <div class="weatherDay">05.15(토)</div>
+        <div class="weatherRain">
+          <div class="rain">
+            <img src="image/cloud.png" alt="비" />
+            <span class="rainText">구름많음</span>
+          </div>
+          <div class="rainPer">
+            강수확률 <span class="rainPerNum">0</span> %
+          </div>
+        </div>
+        <div class="weatherTemperature">
+          <div class="lowest">최저 <span class="lowestNum">17</span> ℃</div>
+          <div class="highest">최고 <span class="highestNum">29</span> ℃</div>
+        </div>
+      </div>
+      <hr class="weatherSectionLine" />
+      <div class="weatherSection">
+        <div class="weatherDay">05.16(일)</div>
+        <div class="weatherRain">
+          <div class="rain">
+            <img src="image/rain.png" alt="비" />
+            <span class="rainText">흐리고 비</span>
+          </div>
+          <div class="rainPer">
+            강수확률 <span class="rainPerNum">70</span> %
+          </div>
+        </div>
+        <div class="weatherTemperature">
+          <div class="lowest">최저 <span class="lowestNum">17</span> ℃</div>
+          <div class="highest">최고 <span class="highestNum">29</span> ℃</div>
+        </div>
+      </div>
+    </div>
+    <div id="rainGutterPopup">
+      <div class="popupTop">
+        <span class="popupTitle">스마트 빗물받이 제어</span>
+        <span id="rainGutterPopupRight">총 80개소</span>
+      </div>
+      <hr class="weatherPopupLineUp" />
+      <hr class="popupLine" />
+      <div id="rainGutterPopupUpdate">
+        <span id="rainGutterPopupUpdateText">최종 업데이트: </span>
+        <span id="rainGutterPopupUpdateDay">2021.05.14 13:31:03</span>
+        <img src="image/reload.png" alt="새로고침" />
+      </div>
+      <div id="rainGutterPopupSection">
+        <div class="rainGutterPopupMenu">
+          <span class="rainGutterPopupMenuText">열림</span>
+          <span class="rainGutterPopupMenuNum">27</span>
+        </div>
+        <div class="rainGutterPopupMenu">
+          <span class="rainGutterPopupMenuText">닫힘</span>
+          <span class="rainGutterPopupMenuNum">49</span>
+        </div>
+        <div class="rainGutterPopupMenu">
+          <span class="rainGutterPopupMenuText">오류</span>
+          <span id="rainGutterPopupMenuNumError">4</span>
+        </div>
+      </div>
+      <div id="rainGutterPopupBtn">
+        <button id="allOpen">전체 열림</button>
+        <button id="allClose">전체 닫힘</button>
+      </div>
+    </div>
+    <div id="eventPopup">
+      <div class="popupTop">
+        <span class="popupTitle">이벤트 현황</span>
+        <img src="image/event.png" alt="이벤트" id="eventImg" />
+      </div>
+      <hr class="eventPopupLineUp" />
+      <hr class="popupLine" />
+      <div id="eventPopupTag">
+        <div class="eventRedTag">
+          <div class="eventRedTagText">과전류</div>
+          <img src="image/redX.png" alt="빨간색X" class="X" />
+        </div>
+        <div class="eventRedTag">
+          <div class="eventRedTagText">악취</div>
+          <img src="image/redX.png" alt="빨간색X" class="X" />
+        </div>
+        <div class="eventRedTag">
+          <div class="eventRedTagText">함체충격</div>
+          <img src="image/redX.png" alt="빨간색X" class="X" />
+        </div>
+        <div class="eventBlueTag">
+          <div class="eventBlueTagText">물감지</div>
+          <img src="image/blueX.png" alt="빨간색X" class="X" />
+        </div>
+        <div class="eventBlueTag">
+          <div class="eventBlueTagText">함채개폐</div>
+          <img src="image/blueX.png" alt="빨간색X" class="X" />
+        </div>
+        <div class="eventBlueTag">
+          <div class="eventBlueTagText">접근센서</div>
+          <img src="image/blueX.png" alt="빨간색X" class="X" />
+        </div>
+        <img src="image/reload.png" id="eventReload" alt="새로고침" />
+      </div>
+      <hr id="eventHr" />
+      <div id="eventMenu">
+        <div class="eventMenu">
+          <div class="eventMenuRedTag">
+            <div class="eventMenuSectionRedText">과전류</div>
+          </div>
+          <div class="eventMenuRight">
+            <div class="eventMenuDay">2021.05.14 16:24:30</div>
+            <div class="eventMenuPlace">범안로 15길 (주)마블리스 Food앞</div>
+          </div>
+        </div>
+        <hr class="eventSectionLine" />
+        <div class="eventMenu">
+          <div class="eventMenuBlueTag">
+            <div class="eventMenuSectionBlueText">물감지</div>
+          </div>
+          <div class="eventMenuRight">
+            <div class="eventMenuDay">2021.05.14 16:24:30</div>
+            <div class="eventMenuPlace">범안로 15길 (주)마블리스 Food앞</div>
+          </div>
+        </div>
+        <hr class="eventSectionLine" />
+        <div class="eventMenu">
+          <div class="eventMenuRedTag">
+            <div class="eventMenuSectionRedText">과전류</div>
+          </div>
+          <div class="eventMenuRight">
+            <div class="eventMenuDay">2021.05.14 16:24:30</div>
+            <div class="eventMenuPlace">범안로 15길 (주)마블리스 Food앞</div>
+          </div>
+        </div>
+        <hr class="eventSectionLine" />
+        <div class="eventMenu">
+          <div class="eventMenuBlueTag">
+            <div class="eventMenuSectionBlueText">접근센서</div>
+          </div>
+          <div class="eventMenuRight">
+            <div class="eventMenuDay">2021.05.14 16:24:30</div>
+            <div class="eventMenuPlace">범안로 15길 (주)마블리스 Food앞</div>
+          </div>
+        </div>
+        <hr class="eventSectionLine" />
+        <div class="eventMenu">
+          <div class="eventMenuRedTag">
+            <div class="eventMenuSectionRedText">과전류</div>
+          </div>
+          <div class="eventMenuRight">
+            <div class="eventMenuDay">2021.05.14 16:24:30</div>
+            <div class="eventMenuPlace">범안로 15길 (주)마블리스 Food앞</div>
+          </div>
+        </div>
+        <hr class="eventSectionLine" />
+        <div class="eventMenu">
+          <div class="eventMenuRedTag">
+            <div class="eventMenuSectionRedText">함체충격</div>
+          </div>
+          <div class="eventMenuRight">
+            <div class="eventMenuDay">2021.05.14 16:24:30</div>
+            <div class="eventMenuPlace">범안로 15길 (주)마블리스 Food앞</div>
+          </div>
+        </div>
+        <hr class="eventSectionLine" />
+        <div id="eventFooter">
+          <div id="eventFooterLeftBtn">
+            <i class="fa-solid fa-angle-left"></i>
+          </div>
+          <div id="eventFooterRightBtn">
+            <i class="fa-solid fa-angle-right"></i>
+          </div>
+          <span id="eventFooterText">전체 317항목 중 1번부터 6번째</span>
+        </div>
+      </div>
+    </div>
+    <div id="location">
+      <i class="fa-solid fa-location-crosshairs"></i>
+    </div>
+    <div id="zoomControl">
+      <div id="zoomPlus"><i class="fa-solid fa-plus"></i></div>
+      <progress max="100" value="25"></progress>
+      <div id="zoomMinus"><i class="fa-solid fa-minus"></i></div>
+    </div>
+    <div id="twoD">2D</div>
+    <div id="mapBtn">
+      <div class="mapBtn">
+        <img src="image/section.png" alt="영역" />
+        <span>영역</span>
+      </div>
+      <hr class="mapBtnHr" />
+      <div class="mapBtn">
+        <img src="image/diameter.png" alt="반경" />
+        <span>반경</span>
+      </div>
+      <hr class="mapBtnHr" />
+      <div class="mapBtn">
+        <img src="image/group.png" alt="그룹" />
+        <span>그룹</span>
+      </div>
+    </div>
+    <div id="serviceStatus">
+      <div class="popupTop">
+        <span class="popupTitle">서비스 운영현황</span>
+      </div>
+      <hr class="serviceStatusLineUp" />
+      <hr class="serviceStatusLine" />
+      <div id="main" style="width: 270px; height: 270px"></div>
+    </div>
+    <div id="rainGutterStatus">
+      <div class="popupTop">
+        <span class="popupTitle">빗물받이 악취 현황</span>
+      </div>
+      <hr class="rainGutterStatusLineUp" />
+      <hr class="rainGutterStatusLine" />
+      <div id="main2" style="width: 270px; height: 300px"></div>
+    </div>
+    <div id="categoryPopup">
+      <button class="categoryPopupBtn">빗물받이</button>
+      <button class="categoryPopupBtn">스마트폴</button>
+      <button class="categoryPopupBtn">자가망</button>
+    </div>
+    <script src="kakaoMap.js"></script>
+    <script src="echarts.js"></script>
+    <script src="chart.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
