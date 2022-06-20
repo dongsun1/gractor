@@ -9,6 +9,7 @@ $.ajax({
     if (response["result"] === "success") {
       mainName = response.name;
       mainValue = response.value;
+      console.log(mainName, mainValue);
       for (let i = 0; i < mainName.length; i++) {
         mainData.push({ value: mainName[i], name: mainName[i] });
       }
