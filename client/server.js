@@ -6,7 +6,7 @@ const app = express();
 
 const port = 8000; //인스턴스 생성시 만들었던 포트번호 기입
 
-app.use(express.static(path.join(__dirname, "build")));
+app.use(express.static(path.join(__dirname)));
 
 app.get("/*", (req, res) => {
   res.set({
