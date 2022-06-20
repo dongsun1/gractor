@@ -9,7 +9,7 @@ app.use("/api", [chartRouter]);
 
 app.use(
   cors({
-    origin: "*",
+    origin: "http://121.132.131.93:28000",
     credential: "true",
   })
 );
