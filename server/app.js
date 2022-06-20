@@ -7,12 +7,7 @@ const chartRouter = require("./routes/chart");
 
 app.use("/api", [chartRouter]);
 
-app.use(
-  cors({
-    origin: "http://121.132.131.93:28000",
-    credential: "true",
-  })
-);
+app.use(cors());
 
 app.listen(port, () => {
   console.log(port, "포트로 서버가 켜졌어요!");
