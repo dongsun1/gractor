@@ -1,12 +1,20 @@
 const http = require("http");
 const express = require("express");
 const path = require("path");
+const cors = require("cors");
 
 const app = express();
 
 const port = 8000; //인스턴스 생성시 만들었던 포트번호 기입
 
 app.use(express.static(path.join(__dirname)));
+
+app.use(
+  cors({
+    origin: "*",
+    credential: "true",
+  })
+);
 
 app.get("/*", (req, res) => {
   res.set({
