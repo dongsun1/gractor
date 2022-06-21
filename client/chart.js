@@ -4,7 +4,7 @@ let mainData = [];
 
 $.ajax({
   type: "GET",
-  url: "http://gractor-dongsun.shop/api/pieChart",
+  url: "http://localhost:28001/api/pieChart",
   success: function (response) {
     console.log(response);
     if (response["result"] === "success") {
