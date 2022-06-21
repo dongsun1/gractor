@@ -4,7 +4,7 @@ let mainData = [];
 
 $.ajax({
   type: "GET",
-  url: "http://localhost/api/pieChart",
+  url: "http://localhost:28000/api/pieChart",
   success: function (response) {
     console.log(response);
     if (response["result"] === "success") {
