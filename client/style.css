@@ -728,8 +728,8 @@ header {
 
   position: absolute;
   z-index: 2;
-  right: 20px;
-  top: 574px;
+  top: 85px;
+  left: 69px;
   /* light/bg/background-01 */
 
   background: #ffffff;
@@ -1217,8 +1217,8 @@ progress {
 #serviceStatus {
   position: absolute;
   z-index: 2;
-  top: 85px;
-  left: 69px;
+  right: 20px;
+  top: 574px;
   width: 270px;
   height: 330px;
 
