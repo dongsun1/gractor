@@ -1,12 +1,12 @@
-FROM node:16-alpine
+FROM node:12
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
-COPY package.json package-lock.json ./
+COPY package*.json ./
 
-RUN npm ci
+RUN npm install
 
-COPY app.js routes/chart.js.
+COPY ./ ./
 
-ENTRYPOINT [ "node", "app.js" ]
+CMD [ "node", "app.js" ]
 
